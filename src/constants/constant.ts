@@ -1,3 +1,6 @@
+import icons from "./icons"
+
+
 const screens = {
     main_layout: "MainLayout",
     home: "Home",

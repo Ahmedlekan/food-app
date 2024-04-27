@@ -1,17 +1,24 @@
 import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native'
-import React from 'react'
-import { COLORS, FONTS, SIZES } from '../constants'
+import React, {useState, useRef} from 'react'
+import { COLORS, FONTS, SIZES} from '../constants'
 
 type CustomDrawerItemProps = {
     label: any
     icon: any
+    onPress?: any
+    activeIndex?: any
 }
 
-const CustomDrawerItem = ({label, icon}: CustomDrawerItemProps) => {
-  return (
-    <TouchableOpacity style={styles.btn}>
-      <Image source={icon} style={styles.img} />
+const CustomDrawerItem = ({label, icon, onPress, activeIndex}: CustomDrawerItemProps) => {
 
+  return (
+    <TouchableOpacity  
+      onPress={()=>{
+        onPress()
+      }}
+      style={[styles.btn, activeIndex]}
+    >
+      <Image source={icon} style={styles.img} />
       <Text style={styles.txt}>{label}</Text>
     </TouchableOpacity>
   )
@@ -26,7 +33,7 @@ const styles = StyleSheet.create({
         marginBottom: SIZES.base,
         alignItems:'center',
         paddingLeft: SIZES.radius,
-        borderRadius: SIZES.base
+        borderRadius: SIZES.base,
     },
     img:{
         width:20,
@@ -37,5 +44,5 @@ const styles = StyleSheet.create({
         marginLeft: 15,
         color: COLORS.white,
         ...FONTS.h3
-    }
+    },
 })

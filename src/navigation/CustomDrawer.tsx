@@ -2,7 +2,7 @@ import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native'
 import React,{useState} from 'react'
 import { createDrawerNavigator} from '@react-navigation/drawer';
 import {COLORS, FONTS, SIZES, icons, dummyData} from "../constants"
-import { MainLayout } from '../screens';
+import MainLayout from '../screens/MainLayout';
 import CustomDrawerContent from './CustomDrawerContent';
 import Animated, { useSharedValue, useAnimatedStyle, withTiming, interpolate } from 'react-native-reanimated';
 
