@@ -2,9 +2,8 @@ import { StyleSheet, Text, TouchableOpacity, View, Image } from 'react-native'
 import React, {useState} from 'react'
 import {DrawerContentScrollView,DrawerItemList} from '@react-navigation/drawer';
 import { COLORS, constant, dummyData, FONTS, icons, SIZES } from '../constants';
-
 import CustomDrawerItem from './CustomDrawerItem';
-import { sidemenu, side_menu_two } from '../constants/sideData';
+
 
 const CustomDrawerContent = ({ navigation }) => {
     const [activeIndex, setActiveIndex] = useState(0)
