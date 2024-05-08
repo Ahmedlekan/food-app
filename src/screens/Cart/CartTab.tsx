@@ -3,7 +3,7 @@ import React from 'react'
 
 const CartTab = () => {
   return (
-    <View>
+    <View style={styles.cartContainer}>
       <Text>Cart</Text>
     </View>
   )
@@ -11,4 +11,10 @@ const CartTab = () => {
 
 export default CartTab
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  cartContainer:{
+    flex: 1, 
+    justifyContent:"center", 
+    alignItems:"center"
+  }
+})

@@ -1,33 +1,47 @@
-import React, {useState, useEffect} from 'react'
-import {View,Text, StyleSheet, TouchableOpacity,Image} from 'react-native';
-import Animated, { useSharedValue, useAnimatedStyle, withTiming, interpolate } from 'react-native-reanimated';
+import React, {useState, useEffect, useRef} from 'react'
+import {View,Text, StyleSheet, TouchableOpacity,Image, FlatList} from 'react-native';
 import { COLORS, SIZES, icons, constant, dummyData } from '../constants';
 import Header from '../components/Header';
 import { LinearGradient } from 'expo-linear-gradient';
 import TabButton from '../components/TabButton';
+import {Home, Search, CartTab, Favorite, Notification} from "../screens/index"
 
 const MainLayout = ({navigation}) => {
     const [selectedTab, setSelectedTab] = useState("")
-    // const progress = useSharedValue(0); // Initial scale value
-    // const scale = interpolate(progress.value, [0, 1], [0.8, 1]);
-    // const borderRadius = interpolate(progress.value, [0, 1], [0, 26]);
-  
-    // const animatedStyle = useAnimatedStyle(()=> ({
-    //   borderRadius,
-    //   transform: [{scale}]
-    // }))
+    const flatListRef = useRef<FlatList<any>>(null);
 
-    const homeTabFlex = useSharedValue(1)
-    const homeTabColor = useSharedValue(COLORS.white)
-    const searchTabFlex = useSharedValue(1)
-    const searchTabColor = useSharedValue(COLORS.white)
-    const cartTabFlex = useSharedValue(1)
-    const cartTabColor = useSharedValue(COLORS.white)
-    const favoriteTabFlex = useSharedValue(1)
-    const favoriteTabColor = useSharedValue(COLORS.white)
-    const notificationTabFlex = useSharedValue(1)
-    const notificationTabColor = useSharedValue(COLORS.white)
-
+    useEffect(()=>{
+        if (selectedTab == constant.screens.home){
+            flatListRef?.current?.scrollToIndex({
+                index: 0,
+                animated: false
+            })
+        }
+        if (selectedTab == constant.screens.search){
+            flatListRef?.current?.scrollToIndex({
+                index: 1,
+                animated: false
+            })
+        }
+        if (selectedTab == constant.screens.cart){
+            flatListRef?.current?.scrollToIndex({
+                index: 2,
+                animated: false
+            })
+        }
+        if (selectedTab == constant.screens.favourite){
+            flatListRef?.current?.scrollToIndex({
+                index: 3,
+                animated: false
+            })
+        }
+        if (selectedTab == constant.screens.notification){
+            flatListRef?.current?.scrollToIndex({
+                index: 4,
+                animated: false
+            })
+        }
+    },[selectedTab])
 
     return (
         <View style={styles.container}
@@ -61,7 +75,26 @@ const MainLayout = ({navigation}) => {
             />
 
             <View style={{flex: 1}}>
-                <Text>MainLayout</Text>
+                <FlatList 
+                    ref={flatListRef}
+                    scrollEnabled={false}
+                    pagingEnabled
+                    horizontal
+                    showsHorizontalScrollIndicator={false}
+                    snapToAlignment= "center"
+                    snapToInterval={SIZES.width}
+                    data={constant.bottom_tabs}
+                    keyExtractor={item => `${item.id}`}
+                    renderItem={({item, index})=>(
+                        <View style={{width: SIZES.width, height: SIZES.height}}>
+                            {item.label == constant.screens.home && <Home />}
+                            {item.label == constant.screens.search && <Search />}
+                            {item.label == constant.screens.cart && <CartTab />}
+                            {item.label == constant.screens.favourite && <Favorite />}
+                            {item.label == constant.screens.notification && <Notification />}
+                        </View>
+                    )}
+                />
             </View>
 
             {/* Footer */}
@@ -151,7 +184,9 @@ const styles = StyleSheet.create({
         borderTopLeftRadius:20,
         borderTopRightRadius: 20,
         backgroundColor: COLORS.white,
-        
+    },
+    bgC:{
+        backgroundColor: COLORS.primary,
     }
 })
 

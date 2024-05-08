@@ -41,12 +41,11 @@ const styles = StyleSheet.create({
         alignItems:'center'
     },
     tabButton:{
-        
         width:"80%", 
         height:50, 
         justifyContent:'center', 
         alignItems:'center',
-        borderRadius: 25
+        borderRadius: 25,
     },
     tabImg:{
         width:20, 

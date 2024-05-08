@@ -3,7 +3,7 @@ import React from 'react'
 
 const Search = () => {
   return (
-    <View>
+    <View style={styles.searchContainer}>
       <Text>Search</Text>
     </View>
   )
@@ -11,4 +11,10 @@ const Search = () => {
 
 export default Search
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  searchContainer:{
+    flex: 1, 
+    justifyContent:"center", 
+    alignItems:"center"
+  }
+})

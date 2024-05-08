@@ -3,7 +3,7 @@ import React from 'react'
 
 const Favorite = () => {
   return (
-    <View>
+    <View style={styles.favContainer}>
       <Text>Favorite</Text>
     </View>
   )
@@ -11,4 +11,10 @@ const Favorite = () => {
 
 export default Favorite
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  favContainer:{
+    flex: 1, 
+    justifyContent:"center", 
+    alignItems:"center"
+  }
+})
