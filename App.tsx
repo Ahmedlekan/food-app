@@ -6,7 +6,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import CustomDrawer from './src/navigation/CustomDrawer';
 import { createDrawerNavigator, DrawerContentScrollView } from '@react-navigation/drawer';
-import TabNavigators from "./src/navigation/TabBarNavigators";
+import { Notification } from "./src/screens";
 
 
 

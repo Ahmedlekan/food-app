@@ -87,7 +87,7 @@ const menu = [
         id: 3,
         name: "Popular",
         list: [
-            hamburger, hotTacos, wrapSandwich,
+            wrapSandwich, hotTacos, hamburger,
         ]
     },
     {

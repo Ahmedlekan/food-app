@@ -3,6 +3,7 @@ import React, {useState} from 'react'
 import {DrawerContentScrollView,DrawerItemList} from '@react-navigation/drawer';
 import { COLORS, constant, dummyData, FONTS, icons, SIZES } from '../constants';
 import CustomDrawerItem from './CustomDrawerItem';
+import { Notification } from '../screens';
 
 
 const CustomDrawerContent = ({ navigation }) => {
@@ -72,7 +73,7 @@ const CustomDrawerContent = ({ navigation }) => {
                     label={constant.screens.notification} 
                     icon={icons.notification}
                     onPress={()=> {
-                        navigation.navigate("MainLayout")
+                        navigation.navigate("Notification")
                         setActiveIndex(2)
                     }}
                     activeIndex={activeIndex === 2 ? styles.bgC : null}
