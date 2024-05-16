@@ -94,14 +94,14 @@ const SignUp = ({navigation}) => {
 
         {/* Sign up & Sign in */}
         <TextButton
-          label="Sign In"
+          label="Sign Up"
           disabled={isEnabledSignIn() ? false : true}
           buttonContainerStyle={{
             height:55, alignItems:"center", marginTop: SIZES.padding, 
             borderRadius: SIZES.radius, 
             backgroundColor: isEnabledSignIn() ? COLORS.primary : COLORS.transparentPrimray
           }}
-          onPress={()=> navigation.navigate("Otp")}
+          onPress={()=> navigation.navigate("SignIn")}
         />
 
         <View style={{flexDirection:"row", justifyContent:"center", 

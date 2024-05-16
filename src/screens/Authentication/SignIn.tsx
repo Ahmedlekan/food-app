@@ -94,6 +94,7 @@ const SignIn = ({navigation}) => {
             borderRadius: SIZES.radius, 
             backgroundColor: isEnabledSignIn() ? COLORS.primary : COLORS.transparentPrimray
           }}
+          onPress={()=> navigation.navigate("Otp")}
         />
 
         {/* sign up */}

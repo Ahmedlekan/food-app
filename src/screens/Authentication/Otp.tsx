@@ -8,7 +8,20 @@ import TextButton from '../../components/TextButton'
 
 const Otp = () => {
   const [timer, setTimer] = useState(60)
-  
+
+  useEffect(()=>{
+    let interval = setInterval(()=>{
+      setTimer( prevTimer => {
+        if (prevTimer > 0){
+          return prevTimer - 1
+        } else{
+          return prevTimer
+        }
+      } )
+    }, 1000)
+
+    return ()=> clearInterval(interval)
+  }, [])
 
   return (
     <AuthLayout
@@ -28,17 +41,42 @@ const Otp = () => {
 
         {/* Count down timer */}
         <View style={{flexDirection:"row", justifyContent:"center", 
-          marginTop:SIZES.padding}}
+          marginTop:SIZES.padding, alignItems:"center"}}
         >
           <Text style={{color:COLORS.darkGray, fontSize:16}}>
             Didn't receive the code?
           </Text>
+          
           <TextButton
             label={`Resend (${timer}s)`}
             disabled={ timer == 0 ? false : true }
-            buttonContainerStyle={{backgroundColor:null, marginTop: SIZES.base}}
-            labelStyle={{color: COLORS.primary, fontWeight:"500", fontSize:20}}
+            buttonContainerStyle={{backgroundColor:null, marginLeft: SIZES.base}}
+            labelStyle={{color: COLORS.primary, fontWeight:"500"}}
             onPress={()=> setTimer(60)}
+          />
+        </View>
+      </View>
+
+      {/* footer */}
+      <View>
+        <TextButton
+          label='Continue'
+          buttonContainerStyle={{
+            height:50, alignItems:"center", borderRadius: SIZES.radius,
+            backgroundColor: COLORS.primary
+          }}
+          onPress={()=>{}}
+        />
+
+        <View style={{alignItems:"center",marginTop:SIZES.padding}}>
+          <Text style={{color:COLORS.darkGray, fontSize:18}}>
+            By signinu up, you agree to our.
+          </Text>
+          <TextButton
+            label='Terms & Conditions'
+            buttonContainerStyle={{backgroundColor: null}}
+            onPress={()=>{}}
+            labelStyle={{color: COLORS.primary}}
           />
         </View>
       </View>

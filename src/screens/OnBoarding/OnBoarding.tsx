@@ -115,7 +115,7 @@ const OnBoarding = ({navigation}) => {
             <TextButton 
               label="Lets Get Started"
               buttonContainerStyle={{height: 60, borderRadius: SIZES.radius}}
-              onPress={()=> navigation.replace("SignIn")}
+              onPress={()=> navigation.replace("SignUp")}
               labelStyle={{}}
             />
           </View>
