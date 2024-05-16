@@ -3,16 +3,15 @@ import React from 'react'
 import { COLORS } from '../constants'
 
 type TextIconButtonProps = {
-    key:any
-    label:any
-    labelStyle:any
-    containerStyle:any
+    label: string
+    labelStyle:{}
+    containerStyle:{}
     onPress:()=> void
     icon:any
-    iconStyle:any
+    iconStyle:{}
 }
 
-const TextIconButton = ({key, label, labelStyle, 
+const TextIconButton = ({label, labelStyle, 
     containerStyle, onPress, icon, iconStyle}: TextIconButtonProps) => {
   return (
     <TouchableOpacity 
@@ -23,6 +22,7 @@ const TextIconButton = ({key, label, labelStyle,
       <Text style={{fontSize:16, fontWeight:"500", ...labelStyle}}>
         {label}
       </Text>
+
       <Image source={icon} style={{height:20, width:20, 
         marginLeft:5, tintColor: COLORS.black, ...iconStyle}}
     />

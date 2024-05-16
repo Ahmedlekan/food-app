@@ -1,5 +1,6 @@
 const coupon = require("../assets/icons/coupon.png")
 const cross = require("../assets/icons/cross.png")
+const correct = require("../assets/icons/correct.png")
 const cart = require("../assets/icons/cart.png")
 const menu = require("../assets/icons/menu.png")
 const search = require("../assets/icons/search.png")
@@ -20,11 +21,20 @@ const setting = require("../assets/icons/setting.png")
 const star = require("../assets/icons/star.png")
 const wallet = require("../assets/icons/wallet.png")
 const help = require("../assets/icons/help.png")
+const eye_close = require("../assets/icons/eye_close.png")
+const eye = require("../assets/icons/eye.png")
+const fb = require("../assets/icons/fb.png")
+const google = require("../assets/icons/google.png")
 
 export default {
     coupon,
+    fb,
+    google,
+    correct,
     cross,
     cart,
+    eye,
+    eye_close,
     menu,
     search,
     filter,
