@@ -25,8 +25,24 @@ const eye_close = require("../assets/icons/eye_close.png")
 const eye = require("../assets/icons/eye.png")
 const fb = require("../assets/icons/fb.png")
 const google = require("../assets/icons/google.png")
+const apple = require("../assets/icons/apple.png")
+const back = require("../assets/icons/back.png")
+const call = require("../assets/icons/call.png")
+const clock = require("../assets/icons/clock.png")
+const dollar = require("../assets/icons/dollar.png")
+const dotted_line = require("../assets/icons/dotted_line.png")
+const minus = require("../assets/icons/minus.png")
+const plus = require("../assets/icons/plus.png")
 
 export default {
+    minus,
+    plus,
+    dollar,
+    dotted_line,
+    clock,
+    apple,
+    back,
+    call,
     coupon,
     fb,
     google,

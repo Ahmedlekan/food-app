@@ -118,7 +118,7 @@ const Home = () => {
     return(
       <Section
         title='Popular near me'
-        onPress={()=>{}}
+        onPress={()=> {}}
       >
         <FlatList
           horizontal
@@ -132,7 +132,7 @@ const Home = () => {
                 marginRight: index == popularMenu.length -1 ? SIZES.padding : 0,
               }}
               item={item}
-              onPress={()=>{}}
+              onPress={()=> {}}
             />
           )}
         />
