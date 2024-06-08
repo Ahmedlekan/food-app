@@ -10,7 +10,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import CustomDrawer from './src/navigation/CustomDrawer';
 import { Notification } from "./src/screens";
 import {OnBoarding, SignIn, SignUp, Otp, ForgotPassword, 
-  FoodDetails, MyCart} from "./src/screens/index"
+  FoodDetails, MyCart, MyCard} from "./src/screens/index"
 
 
 const Stack = createStackNavigator()
@@ -36,6 +36,7 @@ useEffect(()=>{
         <Stack.Screen name="Otp" component={Otp} /> */}
         <Stack.Screen name="FoodDetails" component={FoodDetails} />
         <Stack.Screen name="MyCart" component={MyCart} />
+        <Stack.Screen name="MyCard" component={MyCard} />
 
       </Stack.Navigator>
     </NavigationContainer>

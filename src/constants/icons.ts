@@ -33,8 +33,20 @@ const dollar = require("../assets/icons/dollar.png")
 const dotted_line = require("../assets/icons/dotted_line.png")
 const minus = require("../assets/icons/minus.png")
 const plus = require("../assets/icons/plus.png")
+const delete_icon = require("../assets/icons/delete.png")
+const mastercard = require("../assets/icons/mastercard.png") 
+const visa = require("../assets/icons/visa.png") 
+const paypal = require("../assets/icons/paypal.png") 
+const check_on = require("../assets/icons/check_on.png") 
+const check_off = require("../assets/icons/check_off.png") 
 
 export default {
+    delete_icon,
+    check_off,
+    check_on,
+    mastercard,
+    visa,
+    paypal,
     minus,
     plus,
     dollar,

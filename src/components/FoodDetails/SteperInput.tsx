@@ -7,13 +7,14 @@ type SteperInputProps = {
     value: number
     onAdd: ()=> void
     onMinus: ()=> void
+    containerStyle?: {}
 }
 
-const SteperInput = ({value=1, onAdd, onMinus}: SteperInputProps) => {
+const SteperInput = ({value=1, onAdd, onMinus, containerStyle}: SteperInputProps) => {
 
   return (
     <View style={{ flexDirection:'row', width:130, 
-      height:60,backgroundColor:COLORS.lightGray2}}
+      height:60,backgroundColor:COLORS.lightGray2, ...containerStyle}}
     >
       <IconButton
         containerStyle={{
