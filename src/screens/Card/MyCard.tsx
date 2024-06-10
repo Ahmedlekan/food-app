@@ -1,12 +1,70 @@
 import { StyleSheet, Text, View, ScrollView } from 'react-native'
-import React from 'react'
+import React, {useState} from 'react'
 import Header from '../../components/Header'
 import IconButton from '../../components/IconButton'
 import { COLORS, icons, SIZES } from '../../constants'
-import RenderMyCards from '../../components/CardComponents/RenderMyCards'
-import AddNewCards from '../../components/CardComponents/AddNewCards'
+import { dummyData } from '../../constants'
+import CardItem from '../../components/CardComponents/CardItem'
+import TextButton from '../../components/TextButton'
+
 
 const MyCard = ({navigation}) => {
+  const [selectedCard, setSelectedCard] = useState(null)
+
+  // rendercards component
+  const renderMyCards = () => {
+    return (
+      <View>
+        {dummyData.myCards.map((item, index)=>(
+          <CardItem
+            key={`MyCard-${item.id}`}
+            item={item}
+            isSelectetd={`${selectedCard?.key}-${selectedCard?.id}` == `MyCard-${item.id}`}
+            onPress={()=> setSelectedCard({...item, key:"MyCard"}) }
+          />
+        ))}
+      </View>
+    )
+  }
+
+  // add new cards component
+  const addNewCards = () => {
+  return (
+    <View style={{marginTop:SIZES.padding}}>
+      <Text style={{fontSize:18, fontWeight:"500"}}>Add new cards</Text>
+      {dummyData.allCards.map((item, index)=>(
+        <CardItem
+            key={`NewCard-${item.id}`}
+            item={item}
+            isSelectetd={`${selectedCard?.key}-${selectedCard?.id}` == `NewCard-${item.id}`}
+            onPress={()=> setSelectedCard({...item, key:"NewCard"})}
+        />
+      ))}
+    </View>
+  )
+  }
+
+  // add footer
+  const renderFooter = () => {
+    return (
+      <View style={{
+          paddingTop:SIZES.radius,
+          paddingBottom:SIZES.padding,
+          paddingHorizontal:SIZES.padding
+      }}>
+        <TextButton
+          disabled={selectedCard == null}
+          buttonContainerStyle={{
+              height:60, borderRadius: SIZES.radius,
+              backgroundColor:selectedCard == null ? COLORS.gray : COLORS.primary
+          }}
+          label={selectedCard?.key == "NewCard" ? "Add" : "Place your Order"}
+        />
+      </View>
+    )
+  }
+
+
   return (
     <View>
       {/* header */}
@@ -36,16 +94,17 @@ const MyCard = ({navigation}) => {
       <ScrollView
         contentContainerStyle={{
           flexGrow:1, marginTop:SIZES.radius,paddingHorizontal:SIZES.padding,
-          paddingBottom:SIZES.radius
+          paddingBottom: SIZES.padding
         }}
+        style={{height:'78%'}}
       >
-        {/* cards */}
-        <RenderMyCards />
-        {/* add new cards */}
-        <AddNewCards />
+        {renderMyCards()}
+        {addNewCards()}
       </ScrollView>
 
       {/* footer */}
+      {renderFooter()}
+
     </View>
   )
 }
