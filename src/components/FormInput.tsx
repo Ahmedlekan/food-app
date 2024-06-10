@@ -15,11 +15,13 @@ type FormInputProps = {
     autoComplete?: string | any
     autoCapitalize?:any
     errorMsg?:string
+    value?: string,
+    maxLength?: number
 }
 
 const FormInput = ({containerStyle, label, placeHolder, inputStyle, 
     prependCompenent, appendCompenent, onChange, secureTextEntry, keyboardType="default", 
-    autoComplete="off", autoCapitalize="none", errorMsg=""}: FormInputProps) => {
+    autoComplete="off", autoCapitalize="none", errorMsg="", value, maxLength}: FormInputProps) => {
   return (
     <View style={{...containerStyle}}>
       {/* label & error msg */}
@@ -35,7 +37,7 @@ const FormInput = ({containerStyle, label, placeHolder, inputStyle,
       {/* Text Input */}
       <View style={{flexDirection:"row", height:55, paddingHorizontal: SIZES.padding, 
         marginTop: SIZES.base, borderRadius: SIZES.radius, 
-        backgroundColor: COLORS.lightGray2}}
+        backgroundColor: COLORS.lightGray1}}
       >
         {prependCompenent}
         <TextInput
@@ -47,6 +49,8 @@ const FormInput = ({containerStyle, label, placeHolder, inputStyle,
             autoCapitalize={autoCapitalize}
             autoComplete={autoComplete}
             onChangeText={(text) => onChange(text)}
+            value={value}
+            maxLength={maxLength}
         />
         {appendCompenent}
 
