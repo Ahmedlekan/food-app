@@ -63,7 +63,7 @@ const MyCard = ({navigation}) => {
             if(selectedCard?.key === "NewCard"){
               navigation.navigate("AddCard", {selectedCard: selectedCard})
             } else{
-              navigation.navigate("Checkout", {selectedCard:selectedCard})
+              navigation.navigate("CheckOut", {selectedCard:selectedCard})
             }
           }}
         />

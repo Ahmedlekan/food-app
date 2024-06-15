@@ -4,6 +4,7 @@ import { COLORS, SIZES } from '../constants'
 
 type FormInputProps = {
     containerStyle?:{}
+    inputContainerStyle?:{}
     label?:string
     placeHolder?:string
     inputStyle?:{}
@@ -21,7 +22,8 @@ type FormInputProps = {
 
 const FormInput = ({containerStyle, label, placeHolder, inputStyle, 
     prependCompenent, appendCompenent, onChange, secureTextEntry, keyboardType="default", 
-    autoComplete="off", autoCapitalize="none", errorMsg="", value, maxLength}: FormInputProps) => {
+    autoComplete="off", autoCapitalize="none", errorMsg="", value, maxLength,
+    inputContainerStyle}: FormInputProps) => {
   return (
     <View style={{...containerStyle}}>
       {/* label & error msg */}
@@ -37,7 +39,7 @@ const FormInput = ({containerStyle, label, placeHolder, inputStyle,
       {/* Text Input */}
       <View style={{flexDirection:"row", height:55, paddingHorizontal: SIZES.padding, 
         marginTop: SIZES.base, borderRadius: SIZES.radius, 
-        backgroundColor: COLORS.lightGray1}}
+        backgroundColor: COLORS.lightGray1, ...inputContainerStyle}}
       >
         {prependCompenent}
         <TextInput

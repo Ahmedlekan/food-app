@@ -27,6 +27,12 @@ const AddCard = ({navigation, route}) => {
     setSelectedCard(selectedCard)
   },[])
 
+  function isEnableCard (){
+    return cardNumber !== "" && cardName !=="" && expiryDate !==""
+    && cvv !=="" && cardNumberError ==="" && cardNameError ===""
+    && expiryDateError ==="" && cvvError ===""
+  }
+
   const renderForm = () =>(
     <View style={{marginTop:SIZES.padding * 2}}>
       <FormInput
@@ -206,9 +212,10 @@ const AddCard = ({navigation, route}) => {
       }}>
         <TextButton
           label='Add Card'
+          disabled={!isEnableCard()}
           buttonContainerStyle={{
             height:60, borderRadius:SIZES.radius,
-            backgroundColor: COLORS.primary
+            backgroundColor: isEnableCard() ? COLORS.primary : COLORS.transparentPrimray
           }}
           onPress={()=> navigation.goBack()}
         />

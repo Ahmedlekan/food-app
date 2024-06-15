@@ -39,9 +39,11 @@ const visa = require("../assets/icons/visa.png")
 const paypal = require("../assets/icons/paypal.png") 
 const check_on = require("../assets/icons/check_on.png") 
 const check_off = require("../assets/icons/check_off.png") 
+const discount = require("../assets/icons/discount.png") 
 
 export default {
     delete_icon,
+    discount,
     check_off,
     check_on,
     mastercard,
