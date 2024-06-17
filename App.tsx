@@ -11,7 +11,7 @@ import CustomDrawer from './src/navigation/CustomDrawer';
 import { Notification } from "./src/screens";
 import {OnBoarding, SignIn, SignUp, Otp, ForgotPassword, 
   FoodDetails, MyCart, MyCard, AddCard, CheckOut, 
-  Success} from "./src/screens/index"
+  Success, DeliveryStatus} from "./src/screens/index"
 
 
 const Stack = createStackNavigator()
@@ -41,6 +41,7 @@ useEffect(()=>{
         <Stack.Screen name="AddCard" component={AddCard} />
         <Stack.Screen name="CheckOut" component={CheckOut} />
         <Stack.Screen name="Success" component={Success} />
+        <Stack.Screen name="DeliveryStatus" component={DeliveryStatus} />
 
       </Stack.Navigator>
     </NavigationContainer>
