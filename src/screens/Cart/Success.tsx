@@ -5,25 +5,29 @@ import TextButton from '../../components/TextButton'
 
 const Success = ({navigation}) => {
   return (
-    <View style={{flex:1, justifyContent:"center", alignItems:"center"}}>
-      <Image
-        source={images.success}
-        style={{width:150, height:150}}
-      />
+    <View style={{flex:1, paddingHorizontal:SIZES.padding, justifyContent:"center"}}>
+      
+      <View style={{ alignItems:"center"}}>
+        <Image
+          source={images.success}
+          style={{width:150, height:150}}
+        />
 
-      <Text style={{marginTop:SIZES.padding, fontSize:22, fontWeight:"600"}}>
-        Congratulations
-      </Text>
-      <Text style={{
-        textAlign:"center", marginTop:SIZES.base,color: COLORS.darkGray
-      }}>
-        Payment was successfully made!</Text>
+        <Text style={{marginTop:SIZES.padding, fontSize:22, fontWeight:"600"}}>
+          Congratulations
+        </Text>
+        <Text style={{
+           marginTop:SIZES.base,color: COLORS.darkGray
+        }}>
+          Payment was successfully made!
+        </Text>
+      </View>
 
         {/* footer */}
         <TextButton
           buttonContainerStyle={{
             height:55, marginBottom:SIZES.padding, borderRadius:SIZES.radius,
-            backgroundColor:COLORS.primary
+            backgroundColor:COLORS.primary, marginTop:SIZES.padding
           }}
           label='Done'
           onPress={()=> navigation.navigate("DeliveryStatus")}

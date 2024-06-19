@@ -3,10 +3,10 @@ import React from 'react'
 import { COLORS } from '../constants'
 
 type IconButtonProps = {
-    containerStyle:any
+    containerStyle:{}
     icon:any
-    iconsStyle:any
-    onPress:()=> void
+    iconsStyle:{}
+    onPress?:()=> void
 }
 
 const IconButton = ({containerStyle, icon, iconsStyle, onPress}: IconButtonProps) => {

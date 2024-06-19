@@ -121,37 +121,36 @@ const SignUp = ({navigation}) => {
           />
         </View>
 
-      </View>
 
-      {/* Footer */}
-      <View style={{ gap:5}}>
-        {/* facebook btn */}
-        <TextSocialIconButton
-          containerStyle={{
-            height: 50, alignItems:"center", borderRadius: SIZES.radius,
-            backgroundColor: COLORS.blue
-          }}
-          icon={icons.fb}
-          iconPosition="LEFT"
-          iconStyle={{tintColor: COLORS.white}}
-          label='Continue With Facebook'
-          labelStyle={{marginLeft: SIZES.radius, color: COLORS.white}}
-          onPress={()=>{}}
-        />
-        {/* google btn */}
-        <TextSocialIconButton
-          containerStyle={{
-            height: 50, alignItems:"center", borderRadius: SIZES.radius,
-            backgroundColor: COLORS.lightGray2
-          }}
-          icon={icons.google}
-          iconPosition="LEFT"
-          iconStyle={{tintColor: null}}
-          label='Continue With Google'
-          labelStyle={{marginLeft: SIZES.radius}}
-          onPress={()=>{}}
-        />
-      
+        {/* Footer */}
+        <View style={{ gap:10, marginTop:SIZES.padding * 2}}>
+          {/* facebook btn */}
+          <TextSocialIconButton
+            containerStyle={{
+              height: 50, alignItems:"center", borderRadius: SIZES.radius,
+              backgroundColor: COLORS.blue
+            }}
+            icon={icons.fb}
+            iconPosition="LEFT"
+            iconStyle={{tintColor: COLORS.white}}
+            label='Continue With Facebook'
+            onPress={()=>{}}
+          />
+          {/* google btn */}
+          <TextSocialIconButton
+            containerStyle={{
+              height: 50, alignItems:"center", borderRadius: SIZES.radius,
+              backgroundColor: COLORS.gray2
+            }}
+            icon={icons.google}
+            iconPosition="LEFT"
+            iconStyle={{tintColor: null}}
+            label='Continue With Google'
+            onPress={()=>{}}
+          />
+        
+        </View>
+
       </View>
 
     </AuthLayout>

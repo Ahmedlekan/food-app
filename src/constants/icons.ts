@@ -40,9 +40,23 @@ const paypal = require("../assets/icons/paypal.png")
 const check_on = require("../assets/icons/check_on.png") 
 const check_off = require("../assets/icons/check_off.png") 
 const discount = require("../assets/icons/discount.png") 
+const check_circle = require("../assets/icons/check_circle.png") 
+const map = require("../assets/icons/map.png") 
+const navigator = require("../assets/icons/navigator.png") 
+const navigator1 = require("../assets/icons/navigator1.png") 
+const location_pin = require("../assets/icons/location_pin.png") 
+const globe = require("../assets/icons/globe.png") 
+const focus = require("../assets/icons/focus.png") 
 
 export default {
     delete_icon,
+    focus,
+    globe,
+    navigator,
+    location_pin,
+    navigator1,
+    map,
+    check_circle,
     discount,
     check_off,
     check_on,

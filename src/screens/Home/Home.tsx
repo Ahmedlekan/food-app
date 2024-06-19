@@ -7,8 +7,8 @@ import VerticalFoodCard from '../../components/VerticalFoodCard'
 import FilterModal from '../../components/FilterModal'
 
 const Home = () => {
-  const [selectetdCategoryId, setSelectetdCategoryId] = useState(1)
-  const [selectedMenuType, setSelectedMenuType] = useState(1)
+  const [selectetdCategoryId, setSelectetdCategoryId] = useState<number>(1)
+  const [selectedMenuType, setSelectedMenuType] = useState<number>(1)
   const [menuList, setMenuList] = useState([])
   const [recommends, setRecommends] = useState([])
   const [popularMenu, setPopularMenu] = useState([])

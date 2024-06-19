@@ -4,8 +4,8 @@ import React from 'react'
 type HeaderProps = {
     containerStyle: {}
     title: string
-    leftComponent:any
-    rightComponent: any
+    leftComponent?:any
+    rightComponent?: any
     titleStyle?:{}
 }
 

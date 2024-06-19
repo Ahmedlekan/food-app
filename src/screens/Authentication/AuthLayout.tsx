@@ -15,7 +15,6 @@ const AuthLayout = ({children, title, subtitle, titleContainerStyle}:AuthLayoutP
   return (
     <View style={{flex:1, paddingVertical: SIZES.padding, backgroundColor: COLORS.white}}>
         <KeyboardAwareScrollView
-            keyboardDismissMode='on-drag'
             contentContainerStyle={{flex:1, paddingHorizontal: SIZES.padding}}
         >
             {/* icon */}
@@ -27,6 +26,7 @@ const AuthLayout = ({children, title, subtitle, titleContainerStyle}:AuthLayoutP
                 />
             </View>
             {/* title */}
+
             <View style={{marginTop:SIZES.padding, ...titleContainerStyle}}>
                 <Text style={{textAlign:"center", fontWeight:"600", fontSize:22}}>
                     {title}
@@ -36,6 +36,7 @@ const AuthLayout = ({children, title, subtitle, titleContainerStyle}:AuthLayoutP
                     {subtitle}
                 </Text>
             </View>
+            
             {/* children */}
             {children}
         </KeyboardAwareScrollView>

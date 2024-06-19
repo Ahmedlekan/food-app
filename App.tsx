@@ -11,7 +11,7 @@ import CustomDrawer from './src/navigation/CustomDrawer';
 import { Notification } from "./src/screens";
 import {OnBoarding, SignIn, SignUp, Otp, ForgotPassword, 
   FoodDetails, MyCart, MyCard, AddCard, CheckOut, 
-  Success, DeliveryStatus} from "./src/screens/index"
+  Success, DeliveryStatus, Map} from "./src/screens/index"
 
 
 const Stack = createStackNavigator()
@@ -29,12 +29,12 @@ useEffect(()=>{
     <NavigationContainer>
       <Stack.Navigator screenOptions={{headerShown: false}} initialRouteName="OnBoarding" >
 
-        {/* <Stack.Screen name='Home' component={CustomDrawer} /> */}
-        {/* <Stack.Screen name="OnBoarding" component={OnBoarding} />
+        <Stack.Screen name="OnBoarding" component={OnBoarding} />
         <Stack.Screen name="SignUp" component={SignUp} />
         <Stack.Screen name="SignIn" component={SignIn} />
+        <Stack.Screen name='Home' component={CustomDrawer} /> 
         <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
-        <Stack.Screen name="Otp" component={Otp} /> */}
+        {/* <Stack.Screen name="Otp" component={Otp} /> */}
         <Stack.Screen name="FoodDetails" component={FoodDetails} />
         <Stack.Screen name="MyCart" component={MyCart} />
         <Stack.Screen name="MyCard" component={MyCard} />
@@ -42,6 +42,7 @@ useEffect(()=>{
         <Stack.Screen name="CheckOut" component={CheckOut} />
         <Stack.Screen name="Success" component={Success} />
         <Stack.Screen name="DeliveryStatus" component={DeliveryStatus} />
+        <Stack.Screen name="Map" component={Map} />
 
       </Stack.Navigator>
     </NavigationContainer>

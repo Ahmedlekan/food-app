@@ -6,7 +6,7 @@ import OTPInputView from '@twotalltotems/react-native-otp-input'
 import TextButton from '../../components/TextButton'
 
 
-const Otp = () => {
+const Otp = ({navigation}) => {
   const [timer, setTimer] = useState(60)
 
   useEffect(()=>{
@@ -75,7 +75,7 @@ const Otp = () => {
           <TextButton
             label='Terms & Conditions'
             buttonContainerStyle={{backgroundColor: null}}
-            onPress={()=>{}}
+            onPress={()=> navigation.navigate("Home")}
             labelStyle={{color: COLORS.primary}}
           />
         </View>
