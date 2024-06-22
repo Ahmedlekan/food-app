@@ -42,6 +42,13 @@ function calculateAngle(coordinates) {
     return Math.atan2(dy, dx) * 180 / Math.PI
 }
 
+export const truncateText = (text: string, maxLength: number) => {
+    if (text.length > maxLength) {
+      return text.substring(0, maxLength) + '...';
+    }
+    return text;
+  };
+
 const utils = {
     isValidEmail,
     validateEmail,

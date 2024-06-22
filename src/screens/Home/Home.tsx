@@ -5,8 +5,22 @@ import HorizontalFoodCard from '../../components/HorizontalFoodCard'
 import Section from '../../components/Section'
 import VerticalFoodCard from '../../components/VerticalFoodCard'
 import FilterModal from '../../components/FilterModal'
+import { useNavigation, NavigationProp  } from '@react-navigation/native'
+import { RouteProp } from '@react-navigation/native';
+import { RootStackParamList, FoodItem } from '../../type'
+import { StackNavigationProp } from '@react-navigation/stack';
 
-const Home = () => {
+type HomeScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Home'>;
+type HomeScreenRouteProp = RouteProp<RootStackParamList, 'Home'>;
+
+type Props = {
+  navigation: HomeScreenNavigationProp;
+  route: HomeScreenRouteProp;
+};
+
+const Home:React.FC<Props> = () => {
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
+
   const [selectetdCategoryId, setSelectetdCategoryId] = useState<number>(1)
   const [selectedMenuType, setSelectedMenuType] = useState<number>(1)
   const [menuList, setMenuList] = useState([])
@@ -79,6 +93,10 @@ const Home = () => {
     )
   }
 
+  const handlePress = (item:FoodItem)=>{
+    navigation.navigate("FoodDetails", {item})
+  }
+
   const renderRecommendedSection = ()=>{
     return(
       <Section
@@ -91,23 +109,8 @@ const Home = () => {
           keyExtractor={(item)=> `${item.id}`}
           showsHorizontalScrollIndicator={false}
           renderItem={({item, index})=>(
-            <HorizontalFoodCard
-              containerStyle={{
-                height: 180,
-                width: SIZES.width * 0.85,
-                marginLeft: index == 0 ? SIZES.padding : 18,
-                marginRight: index == recommends.length -1 ? SIZES.padding : 0,
-                paddingRight: SIZES.radius,
-                alignItems: "center"
-              }}
-              imageStyle={{
-                height: 150,
-                width: 150,
-                marginTop: 30
-              }}
-              item={item}
-              onPress={()=>{}}
-            />
+            <HorizontalFoodCard item={item} 
+              onPress={()=>handlePress(item)}/>
           )}
         />
       </Section>
@@ -128,11 +131,11 @@ const Home = () => {
           renderItem={({item, index})=>(
             <VerticalFoodCard
               containerStyle={{
-                marginLeft: index == 0 ? SIZES.padding : 18,
-                marginRight: index == popularMenu.length -1 ? SIZES.padding : 0,
+                marginLeft: index === 0 ? SIZES.padding : 18,
+                marginRight: index === popularMenu.length -1 ? SIZES.padding : 0,
               }}
               item={item}
-              onPress={()=> {}}
+              onPress={()=> handlePress(item)}
             />
           )}
         />
@@ -218,12 +221,10 @@ const Home = () => {
        data={menuList}
        keyExtractor={(item)=> `${item.id}`}
        renderItem={({item, index})=>(
-        <HorizontalFoodCard 
-          containerStyle={styles.containerStyle}
-          imageStyle={styles.imageStyle}
+        <HorizontalFoodCard
+          onPress={()=>handlePress(item)}
           item={item}
-          onPress={()=>{}}
-          />
+        />
        )}
        ListFooterComponent={
         <View style={{height:200}} />
@@ -254,15 +255,4 @@ const styles = StyleSheet.create({
     width:20, 
     tintColor: COLORS.black
   },
-  containerStyle:{
-    height:130,
-    alignItems:'center',
-    marginHorizontal:SIZES.padding,
-    marginBottom: SIZES.radius
-  },
-  imageStyle:{
-    marginTop: 20,
-    height:110,
-    width:110
-  }
 })

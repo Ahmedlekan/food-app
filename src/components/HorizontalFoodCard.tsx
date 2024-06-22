@@ -1,26 +1,26 @@
 import { StyleSheet, Text, TouchableOpacity, View, Image } from 'react-native'
 import React from 'react'
 import { COLORS, icons, SIZES } from '../constants'
+import { truncateText } from '../utils/Utils'
 
 type HorizontalFoodCardProps = {
-    containerStyle:any
-    imageStyle:any
     item:any
     onPress: ()=> void
 }
 
-const HorizontalFoodCard = ({containerStyle, imageStyle, item, onPress}: HorizontalFoodCardProps) => {
-
+const HorizontalFoodCard = ({item, onPress}: HorizontalFoodCardProps) => {
+    const shortenedDescription = truncateText(item.description, 50);
   return (
     <TouchableOpacity style={{flexDirection: "row",borderRadius: SIZES.radius,
-        backgroundColor:COLORS.lightGray2, ...containerStyle}} 
+        backgroundColor:COLORS.lightGray2, height:130,alignItems:'center',
+        marginHorizontal:SIZES.padding,marginBottom: SIZES.radius}} 
         onPress={onPress}
     >
-        <Image source={item.image} style={imageStyle} />
+        <Image source={item.image} style={{marginTop: 20,height:110,width:110}} />
 
         <View style={{flex: 1}}>
             <Text style={{fontSize:17, fontWeight:'500'}}>{item.name}</Text>
-            <Text style={{color: COLORS.darkGray}}>{item.description}</Text>
+            <Text style={{color: COLORS.darkGray}}>{shortenedDescription}</Text>
             <Text style={{marginTop:SIZES.base, fontWeight:'700', fontSize:20}}>{item.price}</Text>
         </View>
 

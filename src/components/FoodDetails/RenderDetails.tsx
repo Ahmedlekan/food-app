@@ -1,15 +1,18 @@
-import { StyleSheet, Text, View, Image } from 'react-native'
+import { StyleSheet, Text, View, Image, TouchableWithoutFeedback } from 'react-native'
 import React,{useState} from 'react'
 import { COLORS, dummyData, icons, SIZES } from '../../constants'
 import IconLabel from './IconLabel'
 import TextButton from '../TextButton'
+import { FoodItem } from '../../type'
 
 type RenderDetailsProps = {
-    foodItem?:any
+    foodItem:FoodItem
 }
 
 const RenderDetails = ({foodItem}: RenderDetailsProps) => {
     const [selectedSize, setselectedSize] = useState<number>()
+    const [fullDesc, setFullDesc] = useState<boolean>(false);
+
   return (
     <View style={{marginTop: SIZES.radius,marginBottom: SIZES.padding,
         paddingHorizontal: SIZES.padding}}
@@ -50,11 +53,29 @@ const RenderDetails = ({foodItem}: RenderDetailsProps) => {
         <Text style={{fontSize:25, fontWeight:"600"}}>
             {foodItem?.name}
         </Text>
-        <Text style={{marginTop:SIZES.base, color: COLORS.darkBlue,
-            textAlign:"justify", fontSize:17}}
-        >
-            {foodItem?.description}
-        </Text>
+
+        {fullDesc ? (
+            <TouchableWithoutFeedback
+                onPress={()=> setFullDesc(prev => !prev)}
+            >
+                <Text style={{marginTop:SIZES.base, color: COLORS.darkBlue,
+                    textAlign:"justify", fontSize:17}}
+                >
+                {foodItem?.description}
+                </Text>
+            </TouchableWithoutFeedback>
+        ):(
+            <TouchableWithoutFeedback
+                onPress={()=> setFullDesc(prev => !prev)}
+            >
+                <Text style={{marginTop:SIZES.base, color: COLORS.darkBlue,
+                    textAlign:"justify", fontSize:17}}
+                    numberOfLines={3}
+                >
+                {foodItem?.description}
+                </Text>
+            </TouchableWithoutFeedback>
+        )}
 
         {/* ratings, duration $ shipping */}
         <View style={{flexDirection:"row", marginTop: SIZES.padding}}>

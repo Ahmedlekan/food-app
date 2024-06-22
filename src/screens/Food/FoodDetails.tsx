@@ -6,15 +6,33 @@ import IconButton from '../../components/IconButton'
 import CartQuantity from '../../components/CartQuantity'
 import { RenderDetails, RenderRestaurants, RenderFooter } from '../../components/FoodDetails'
 import LineDivider from '../../components/LineDivider'
+import { RouteProp } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { RootStackParamList } from '../../type'
 
-const FoodDetails = ({navigation}) => {
-  const [foodItem, setFoodItem] = useState(dummyData.vegBiryani)
+type FoodDetailsNavigationProp = StackNavigationProp<RootStackParamList, 'FoodDetails'>;
+type FoodDetailsRouteProp = RouteProp<RootStackParamList, 'FoodDetails'>;
+
+type Props = {
+  navigation: FoodDetailsNavigationProp;
+  route: FoodDetailsRouteProp;
+};
+
+const FoodDetails:React.FC<Props> = ({navigation, route}) => {
+
+  const { item:foodItem } = route.params;
+
+  if(!foodItem?.name){
+    return <Text style={{flex:1, justifyContent:"center", alignItems:"center"}}>
+        Product not found
+      </Text>
+  }
 
   return (
     <View style={{flex:1, backgroundColor: COLORS.white}}>    
       {/* Header */}
       <Header 
-        title='DETAILS' 
+        title={foodItem.name.toUpperCase()} 
         containerStyle={{height:50, marginTop:40, marginHorizontal: SIZES.padding}}
         leftComponent={
           <IconButton
@@ -26,7 +44,7 @@ const FoodDetails = ({navigation}) => {
             iconsStyle={{
               width:20, height:20, tintColor: COLORS.gray2
             }}
-            onPress={()=>{}}
+            onPress={()=> navigation.goBack()}
           />
         }
         rightComponent={
@@ -43,6 +61,7 @@ const FoodDetails = ({navigation}) => {
         <RenderDetails
           foodItem={foodItem}
         />
+        
         <LineDivider/>
 
         {/* Restaurant */}
