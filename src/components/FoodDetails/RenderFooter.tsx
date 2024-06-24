@@ -3,32 +3,42 @@ import React, {useState} from 'react'
 import { COLORS, SIZES } from '../../constants'
 import SteperInput from './SteperInput'
 import TextButton from '../TextButton'
+import { FoodItem } from '../../type'
+import { useNavigation } from '@react-navigation/native'
+import { RootStackParamList } from '../../type'
+import { StackNavigationProp } from '@react-navigation/stack';
+import { PriceItem } from '../../type'
 
-const RenderFooter = ({navigation}) => {
-  const [qty, setQty] = useState<number>(1)
+type MyCartScreenProp = StackNavigationProp<RootStackParamList, 'MyCart'>;
+
+type RenderFooterProps = {
+  footerItem: FoodItem
+  price: PriceItem
+  setPrice: (item)=> void
+}
+
+const RenderFooter = ({footerItem, price}:RenderFooterProps) => {
+  const navigation = useNavigation<MyCartScreenProp>()
+
   return (
     <View style={{
         flexDirection:"row", alignItems:"center", height:120, 
         paddingHorizontal:SIZES.padding, paddingBottom:SIZES.radius
     }}>
-      <SteperInput
-        value={qty}
-        onAdd={()=> setQty(prev => prev + 1)}
-        onMinus={()=> {
-          if(qty > 1){
-            setQty(prev => prev - 1)
-          }
-        }}
-      />
+      <View style={styles.PriceContainer}>
+          <Text style={styles.PriceTitle}>Price</Text>
+          <Text style={styles.PriceText}>
+            {price.currency} <Text style={styles.Price}> {price.price} </Text>
+          </Text>
+        </View>
       
       <TextButton
         buttonContainerStyle={{
-          flex:1, flexDirection:"row", height:60, marginLeft:SIZES.radius,
+          flex:3, height:60, marginLeft:SIZES.radius,
           paddingHorizontal: SIZES.radius, borderRadius:SIZES.radius,
         }}
-        label='Buy Now'
-        label2='$15.99'
-        onPress={()=> navigation.navigate("MyCart")}
+        label='Add to Cart'
+        onPress={()=> navigation.push("MyCart")}
       />
     </View>
   )
@@ -36,4 +46,26 @@ const RenderFooter = ({navigation}) => {
 
 export default RenderFooter
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  PriceContainer: {
+    alignItems: 'center',
+    width: 100,
+    backgroundColor:COLORS.lightGray2,
+    flex:2, 
+    height:60,
+    borderRadius:SIZES.radius,
+  },
+  PriceTitle: {
+    fontSize: 16,
+    fontWeight:"500",
+    color: COLORS.darkGray,
+  },
+  PriceText: {
+    fontSize: 20,
+    fontWeight:"500",
+    color: COLORS.primary,
+  },
+  Price: {
+    color: COLORS.darkGray,
+  },
+})

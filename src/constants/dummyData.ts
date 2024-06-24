@@ -32,7 +32,15 @@ const hamburger = {
     price: 15.99,
     calories: 78,
     isFavourite: true,
-    image: require("../assets/dummyData/hamburger.png")
+    imagelink_portrait: require('../assets/dummyData/hamburger.png'),
+    image: require("../assets/dummyData/hamburger.png"),
+    prices: [
+        {size: 'S', price: '15.99', currency: '$'},
+        {size: 'M', price: '18.99', currency: '$'},
+        {size: 'L', price: '21.99', currency: '$'},
+    ],
+    average_rating: 4.6,
+    ratings_count: '6,879',
 }
 
 const hotTacos = {
@@ -40,10 +48,17 @@ const hotTacos = {
     name: "Hot Tacos",
     description: "Mexican tortilla & tacos",
     categories: [1, 3],
-    price: 10.99,
     calories: 78,
     isFavourite: false,
-    image: require("../assets/dummyData/hot_tacos.png")
+    image: require("../assets/dummyData/hot_tacos.png"),
+    imagelink_portrait: require('../assets/dummyData/hot_tacos.png'),
+    prices: [
+        {size: 'S', price: '13.99', currency: '$'},
+        {size: 'M', price: '15.99', currency: '$'},
+        {size: 'L', price: '18.99', currency: '$'},
+    ],
+    average_rating: 4.5,
+    ratings_count: '6,879',
 }
 
 const vegBiryani = {
@@ -51,10 +66,18 @@ const vegBiryani = {
     name: "Veg Biryani",
     description: "Veg Biryani is a flavourful rice dish made with basmati rice, mixed vegetables, whole spices, freshly ginger, garlic, coriander and mint leaves. In this blog post I have shared vegetable biryani",
     categories: [1, 2, 3],
-    price: 10.99,
     calories: 78,
     isFavourite: true,
-    image: require("../assets/dummyData/veg_biryani.png")
+    image: require("../assets/dummyData/veg_biryani.png"),
+    imagelink_portrait: require('../assets/dummyData/veg_biryani.png'),
+    prices: [
+        {size: 'S', price: '17.99', currency: '$'},
+        {size: 'M', price: '19.99', currency: '$'},
+        {size: 'L', price: '24.99', currency: '$'},
+    ],
+    average_rating: 4.7,
+    ratings_count: '6,879',
+    
 }
 
 const wrapSandwich = {
@@ -62,10 +85,17 @@ const wrapSandwich = {
     name: "Wrap Sandwich",
     description: "Grilled vegetables sandwich",
     categories: [1, 2],
-    price: 10.99,
     calories: 78,
     isFavourite: true,
-    image: require("../assets/dummyData/wrap_sandwich.png")
+    image: require("../assets/dummyData/wrap_sandwich.png"),
+    imagelink_portrait: require('../assets/dummyData/wrap_sandwich.png'),
+    prices: [
+        {size: 'S', price: '10.99', currency: '$'},
+        {size: 'M', price: '14.99', currency: '$'},
+        {size: 'L', price: '19.99', currency: '$'},
+    ],
+    average_rating: 5,
+    ratings_count: '6,879',
 }
 
 const menu = [

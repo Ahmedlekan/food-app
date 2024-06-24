@@ -1,4 +1,5 @@
-import { StyleSheet, Text, View, ScrollView } from 'react-native'
+import { StyleSheet, Text, View, ScrollView, StatusBar, 
+  TouchableOpacity, TouchableWithoutFeedback } from 'react-native'
 import React, {useState} from 'react'
 import { COLORS, dummyData, icons, SIZES } from '../../constants'
 import Header from '../../components/Header'
@@ -19,20 +20,26 @@ type Props = {
 };
 
 const FoodDetails:React.FC<Props> = ({navigation, route}) => {
+  const { item } = route.params;
 
-  const { item:foodItem } = route.params;
+  const initialPrice = item?.prices?.[0];
+  const [price, setPrice] = useState(initialPrice);
 
-  if(!foodItem?.name){
+  if(!item?.name){
     return <Text style={{flex:1, justifyContent:"center", alignItems:"center"}}>
         Product not found
       </Text>
+  }
+
+  const toggleFavorite = ()=>{
+
   }
 
   return (
     <View style={{flex:1, backgroundColor: COLORS.white}}>    
       {/* Header */}
       <Header 
-        title={foodItem.name.toUpperCase()} 
+        title="DETAILS PAGE" 
         containerStyle={{height:50, marginTop:40, marginHorizontal: SIZES.padding}}
         leftComponent={
           <IconButton
@@ -59,24 +66,62 @@ const FoodDetails:React.FC<Props> = ({navigation, route}) => {
       <ScrollView>
         {/* Food Detail */}
         <RenderDetails
-          foodItem={foodItem}
+          foodItem={item}
+          price={price}
+          setPrice={setPrice}
         />
-        
         <LineDivider/>
-
         {/* Restaurant */}
         <RenderRestaurants />
-
       </ScrollView>
 
       {/* Footer */}
       <LineDivider />
-      <RenderFooter navigation={navigation} />
+      <RenderFooter 
+        footerItem={item}
+        price={price}
+        setPrice={setPrice}
+      />
       
     </View>
+
+    // <View style={styles.ScreenContainer}>
+    //     <PaymentFooter
+    //       price={price}
+    //       buttonTitle="Add to Cart"
+    //       buttonPressHandler={() => {
+    //         addToCarthandler({
+    //           id: itemOfIndex.id,
+    //           index: itemOfIndex.index,
+    //           name: itemOfIndex.name,
+    //           roasted: itemOfIndex.roasted,
+    //           imagelink_square: itemOfIndex.imagelink_square,
+    //           special_ingredient: itemOfIndex.special_ingredient,
+    //           type: itemOfIndex.type,
+    //           price: price,
+    //         });
+    //       }}
+    //     />
+    //   </ScrollView> 
+    // </View>
+
   )
 }
 
 export default FoodDetails
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  ScreenContainer: {
+    flex: 1,
+    backgroundColor: COLORS.black,
+  },
+  ScrollViewFlex: {
+    flexGrow: 1,
+    justifyContent: 'space-between',
+  },
+  FooterInfoArea: {
+    padding: SIZES.padding,
+  },
+ 
+
+})

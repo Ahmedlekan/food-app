@@ -1,16 +1,19 @@
-import { StyleSheet, Text, View, Image, TouchableWithoutFeedback } from 'react-native'
+import { StyleSheet, Text, View, Image, TouchableWithoutFeedback, 
+    TouchableOpacity } from 'react-native'
 import React,{useState} from 'react'
 import { COLORS, dummyData, icons, SIZES } from '../../constants'
 import IconLabel from './IconLabel'
 import TextButton from '../TextButton'
 import { FoodItem } from '../../type'
+import { PriceItem } from '../../type'
 
 type RenderDetailsProps = {
     foodItem:FoodItem
+    price: PriceItem
+    setPrice: (item)=> void
 }
 
-const RenderDetails = ({foodItem}: RenderDetailsProps) => {
-    const [selectedSize, setselectedSize] = useState<number>()
+const RenderDetails = ({foodItem, price, setPrice}: RenderDetailsProps) => {
     const [fullDesc, setFullDesc] = useState<boolean>(false);
 
   return (
@@ -53,7 +56,8 @@ const RenderDetails = ({foodItem}: RenderDetailsProps) => {
         <Text style={{fontSize:25, fontWeight:"600"}}>
             {foodItem?.name}
         </Text>
-
+        
+        {/* Description */}
         {fullDesc ? (
             <TouchableWithoutFeedback
                 onPress={()=> setFullDesc(prev => !prev)}
@@ -79,12 +83,19 @@ const RenderDetails = ({foodItem}: RenderDetailsProps) => {
 
         {/* ratings, duration $ shipping */}
         <View style={{flexDirection:"row", marginTop: SIZES.padding}}>
-            <IconLabel
-                containerStyle={{backgroundColor: COLORS.primary}}
-                icon={icons.star}
-                label='4.5'
-                labelStyle={{color: COLORS.white}}
-            />
+            <View style={{flexDirection:"row", alignItems:"center", 
+                gap:5, backgroundColor:COLORS.lightGray2, borderRadius:SIZES.base, 
+                paddingHorizontal:SIZES.base}}
+            >
+                <Image 
+                    source={icons.star}
+                    style={{tintColor: COLORS.primary, 
+                    height:15, width:15
+                    }}
+                />
+                <Text style={{color:COLORS.black}}>{foodItem.average_rating}</Text>
+                <Text style={{color:COLORS.black}}>({foodItem.ratings_count})</Text>
+            </View>
             <IconLabel
                 containerStyle={{marginLeft: SIZES.radius, paddingHorizontal: 0}}
                 icon={icons.clock}
@@ -101,31 +112,23 @@ const RenderDetails = ({foodItem}: RenderDetailsProps) => {
         </View>
 
         {/* sizes section */}
-        <View style={{
-            flexDirection:"row", alignItems:"center", 
-            marginTop: SIZES.padding}}
-        >
-            <Text style={{fontSize:18, fontWeight:"500"}}>Sizes:</Text>
-
-            <View style={{
-                flexDirection:"row", flexWrap:"wrap", marginLeft:SIZES.padding}}
-            >
-                {dummyData.sizes.map((item, index) =>(
-                    <TextButton
-                        key={`Sizes-${index}`}
-                        buttonContainerStyle={{
-                            width: 55, height:55, margin:SIZES.base, borderWidth:1,
-                            borderRadius:SIZES.radius, 
-                            borderColor: selectedSize == item.id ? COLORS.primary : COLORS.gray2,
-                            backgroundColor: selectedSize == item.id ? COLORS.primary : null
-                        }}
-                        label={item.label}
-                        labelStyle={{color: selectedSize == item.id ? COLORS.white : COLORS.gray2, 
-                            fontSize:20, fontWeight:"500"}}
-                        onPress={()=> setselectedSize(item.id)}
-                    />
-                ))}
-            </View>
+        <Text style={styles.InfoTitle}>Size</Text>
+        <View style={styles.SizeOuterContainer}>
+            {foodItem.prices.map((data, index)=>(
+                <TouchableOpacity
+                    key={data.size}
+                    onPress={() => {setPrice(data)}}
+                    style={[styles.SizeBox,{
+                        borderColor: data.size == price.size ? COLORS.darkGray : COLORS.primary}]}
+                >
+                    <Text
+                        style={[styles.SizeText,
+                        {color:data.size == price.size ? COLORS.white : COLORS.black}]}
+                    >
+                        {data.size}
+                    </Text>
+                </TouchableOpacity>
+            ))}
         </View>
         
       </View>
@@ -136,4 +139,32 @@ const RenderDetails = ({foodItem}: RenderDetailsProps) => {
 
 export default RenderDetails
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+    SizeOuterContainer: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        gap: 20,
+      },
+      SizeBox: {
+        flex: 1,
+        backgroundColor: COLORS.primary,
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: SIZES.padding * 2,
+        borderRadius: SIZES.base,
+        borderWidth: 2,
+      },
+      SizeText: {
+        color:COLORS.white,
+        fontWeight:"500",
+        fontSize:18
+      },
+      InfoTitle: {
+        fontSize: 20,
+        fontWeight:"500",
+        color: COLORS.black,
+        marginBottom: SIZES.radius,
+        marginTop:SIZES.font
+      },
+})
