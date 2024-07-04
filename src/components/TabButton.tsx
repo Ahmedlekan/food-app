@@ -4,16 +4,15 @@ import Animated from 'react-native-reanimated';
 import { COLORS, SIZES } from '../constants';
 
 type TabButtonProps = {
-    label: any
-    icons: any
-    onPress: ()=> void
-    isFocused: boolean
+    label?: any
+    icons?: any
+    isFocused?: boolean
 }
 
-const TabButton = ({label, icons, onPress, isFocused}) => {
+const TabButton = ({label, icons, isFocused}) => {
   return (
     <TouchableWithoutFeedback 
-        onPress={onPress}
+        onPress={()=>{}}
     >
         <Animated.View style={[styles.btnContainer]}>
             <Animated.View style={[styles.tabButton]}>

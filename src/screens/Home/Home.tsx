@@ -9,18 +9,19 @@ import { useNavigation, NavigationProp  } from '@react-navigation/native'
 import { RouteProp } from '@react-navigation/native';
 import { RootStackParamList, FoodItem } from '../../type'
 import { StackNavigationProp } from '@react-navigation/stack';
+import Header from '../../components/Header'
+import { useProductStore } from '../../store/useStore'
 
-type HomeScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Home'>;
-type HomeScreenRouteProp = RouteProp<RootStackParamList, 'Home'>;
+// type HomeScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Home'>;
+// type HomeScreenRouteProp = RouteProp<RootStackParamList, 'Home'>;
 
-type Props = {
-  navigation: HomeScreenNavigationProp;
-  route: HomeScreenRouteProp;
-};
+// type Props = {
+//   navigation: HomeScreenNavigationProp;
+//   route: HomeScreenRouteProp;
+// };
 
-const Home:React.FC<Props> = () => {
-  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
-
+const Home= ({navigation}) => {
+  
   const [selectetdCategoryId, setSelectetdCategoryId] = useState<number>(1)
   const [selectedMenuType, setSelectedMenuType] = useState<number>(1)
   const [menuList, setMenuList] = useState([])
@@ -33,20 +34,28 @@ const Home:React.FC<Props> = () => {
   }, [])
 
   const handleChangeCategory = (categoryId, menuTypeId)=>{
+    const selectedCategory = dummyData.categories.find(category => category.id === categoryId);
+    if (!selectedCategory) {
+      console.error('Category not found');
+      return;
+    }
     //find the menu base on the menutype id
-    let selectedMenu = dummyData.menu.find(a => a.id == menuTypeId)
-    //set the menu base on the category id
-    setMenuList(selectedMenu?.list.filter(a => a.categories.includes(categoryId)))
+    let selectedMenu = dummyData.menu.find(menu => menu.id == menuTypeId)
+    if(selectedMenu){
+      setMenuList(selectedMenu?.list?.filter(item => selectedCategory.foodList.includes(item)))
+    }
 
     //retreieve the recommend menu
     let selectedRecommend = dummyData.menu.find((a) => a.name == "Recommended" )
-    //set the recommended menu base on the category id
-    setRecommends(selectedRecommend?.list.filter((a)=> a.categories.includes(categoryId)))
+    if(selectedRecommend){
+      setRecommends(selectedRecommend?.list.filter((item)=> selectedCategory.foodList.includes(item)))
+    }
 
     //retreieve the recommend menu
     const selectPopularMenu = dummyData.menu.find(a => a.name == "Popular")
-    //set the recommended menu base on the category id
-    setPopularMenu( selectPopularMenu?.list.filter( (a) => a.categories.includes(categoryId)  ) )
+    if(selectPopularMenu){
+      setPopularMenu( selectPopularMenu?.list.filter( (item) => selectedCategory.foodList.includes(item)) )
+    }
   }
 
   const renderSearch = ()=>{
@@ -94,23 +103,26 @@ const Home:React.FC<Props> = () => {
   }
 
   const handlePress = (item:FoodItem)=>{
-    navigation.navigate("FoodDetails", {item})
+    navigation.navigate('FoodDetails', { item });
   }
 
   const renderRecommendedSection = ()=>{
     return(
       <Section
         title="Recommended" 
-        onPress={()=> console.log("Show all recommended")}
+        onPress={()=> {}}
       >
         <FlatList
           horizontal
           data={recommends}
-          keyExtractor={(item)=> `${item.id}`}
+          keyExtractor={(item) => `${item.id}`}
           showsHorizontalScrollIndicator={false}
-          renderItem={({item, index})=>(
-            <HorizontalFoodCard item={item} 
-              onPress={()=>handlePress(item)}/>
+          renderItem={({ item }) => ( 
+            <HorizontalFoodCard
+              item={item}
+              price={item.prices[0]}
+              onPress={()=>handlePress(item)}
+            />
           )}
         />
       </Section>
@@ -135,6 +147,7 @@ const Home:React.FC<Props> = () => {
                 marginRight: index === popularMenu.length -1 ? SIZES.padding : 0,
               }}
               item={item}
+              price={item.prices[2]}
               onPress={()=> handlePress(item)}
             />
           )}
@@ -195,6 +208,27 @@ const Home:React.FC<Props> = () => {
 
   return (
     <View style={styles.homeContainer}>
+      {/* Header */}
+        <Header
+            leftComponent={
+                <TouchableOpacity 
+                    style={styles.leftBtn} 
+                    onPress={ ()=> navigation.openDrawer()}
+                >
+                    <Image source={icons.menu} />
+                </TouchableOpacity>
+            }
+            title='HOME'
+            rightComponent={
+                <TouchableOpacity style={styles.rightBtn}>
+                    <Image 
+                        source={dummyData?.myProfile?.profile_image} 
+                        style={{width:40, height:40, borderRadius: SIZES.radius}}
+                    />
+                </TouchableOpacity>
+            }
+        />
+
       {/* saecrh */}
       {renderSearch()}
       
@@ -221,10 +255,13 @@ const Home:React.FC<Props> = () => {
        data={menuList}
        keyExtractor={(item)=> `${item.id}`}
        renderItem={({item, index})=>(
-        <HorizontalFoodCard
-          onPress={()=>handlePress(item)}
-          item={item}
-        />
+        <View>
+          <HorizontalFoodCard
+            onPress={()=>handlePress(item)}
+            item={item}
+            price={item.prices[0]}
+          />
+        </View>
        )}
        ListFooterComponent={
         <View style={{height:200}} />
@@ -238,7 +275,8 @@ export default Home
 
 const styles = StyleSheet.create({
   homeContainer:{
-    flex: 1, 
+    flex: 1,
+    backgroundColor:COLORS.white
   },
   searchContainer:{
     flexDirection:'row', 
@@ -255,4 +293,23 @@ const styles = StyleSheet.create({
     width:20, 
     tintColor: COLORS.black
   },
+
+
+
+  leftBtn:{
+    width: 40,
+    height:40,
+    alignItems:'center',
+    justifyContent:'center',
+    borderWidth:1,
+    borderColor: COLORS.gray2,
+    borderRadius:  SIZES.radius
+},
+rightBtn:{
+    alignItems:'center',
+    justifyContent:'center',
+    borderWidth:1,
+    borderColor: COLORS.gray2,
+    borderRadius: SIZES.radius
+},
 })

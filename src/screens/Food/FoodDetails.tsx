@@ -1,34 +1,47 @@
 import { StyleSheet, Text, View, ScrollView, StatusBar, 
   TouchableOpacity, TouchableWithoutFeedback } from 'react-native'
 import React, {useState} from 'react'
-import { COLORS, dummyData, icons, SIZES } from '../../constants'
+import { COLORS, icons, SIZES } from '../../constants'
 import Header from '../../components/Header'
 import IconButton from '../../components/IconButton'
-import CartQuantity from '../../components/CartQuantity'
 import { RenderDetails, RenderRestaurants, RenderFooter } from '../../components/FoodDetails'
 import LineDivider from '../../components/LineDivider'
 import { RouteProp } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../../type'
+import { useProductStore } from '../../store/useStore'
+import { FoodItem } from '../../type'
+import {dummyData} from '../../constants'
 
-type FoodDetailsNavigationProp = StackNavigationProp<RootStackParamList, 'FoodDetails'>;
-type FoodDetailsRouteProp = RouteProp<RootStackParamList, 'FoodDetails'>;
+// type FoodDetailsNavigationProp = StackNavigationProp<RootStackParamList, 'FoodDetails'>;
+// type FoodDetailsRouteProp = RouteProp<RootStackParamList, 'FoodDetails'>;
 
-type Props = {
-  navigation: FoodDetailsNavigationProp;
-  route: FoodDetailsRouteProp;
-};
+// type Props = {
+//   navigation: FoodDetailsNavigationProp;
+//   route: FoodDetailsRouteProp;
+// };
 
-const FoodDetails:React.FC<Props> = ({navigation, route}) => {
-  const { item } = route.params;
+const FoodDetails = ({navigation, route}) => {
+  const { item:product} = route.params;
+  const {addToCart, addToFavoriteList, calculateCartPrice, deleteFromFavoriteList} = useProductStore()
 
-  const initialPrice = item?.prices?.[0];
+  const initialPrice = product?.prices?.[0];
   const [price, setPrice] = useState(initialPrice);
 
-  if(!item?.name){
-    return <Text style={{flex:1, justifyContent:"center", alignItems:"center"}}>
-        Product not found
-      </Text>
+
+  const addToCarthandler = (product) => {
+    addToCart(product);
+    calculateCartPrice();
+    navigation.navigate("CartTab");
+  };
+
+
+  if(!product?.name){
+    return (
+      <View style={{flex:1, justifyContent:"center", alignItems:"center"}}>
+        <Text>Product not found</Text>
+      </View>
+    )
   }
 
   const toggleFavorite = ()=>{
@@ -40,7 +53,6 @@ const FoodDetails:React.FC<Props> = ({navigation, route}) => {
       {/* Header */}
       <Header 
         title="DETAILS PAGE" 
-        containerStyle={{height:50, marginTop:40, marginHorizontal: SIZES.padding}}
         leftComponent={
           <IconButton
             icon={icons.back}
@@ -54,19 +66,13 @@ const FoodDetails:React.FC<Props> = ({navigation, route}) => {
             onPress={()=> navigation.goBack()}
           />
         }
-        rightComponent={
-          <CartQuantity 
-            quantity={3}
-            onPress={()=>{}}
-          />
-        }
       />
-
+      
       {/* Body */}
       <ScrollView>
         {/* Food Detail */}
         <RenderDetails
-          foodItem={item}
+          foodItem={product}
           price={price}
           setPrice={setPrice}
         />
@@ -78,32 +84,13 @@ const FoodDetails:React.FC<Props> = ({navigation, route}) => {
       {/* Footer */}
       <LineDivider />
       <RenderFooter 
-        footerItem={item}
+        footerItem={product}
         price={price}
         setPrice={setPrice}
+        onPress={()=> addToCarthandler(product)}
       />
       
     </View>
-
-    // <View style={styles.ScreenContainer}>
-    //     <PaymentFooter
-    //       price={price}
-    //       buttonTitle="Add to Cart"
-    //       buttonPressHandler={() => {
-    //         addToCarthandler({
-    //           id: itemOfIndex.id,
-    //           index: itemOfIndex.index,
-    //           name: itemOfIndex.name,
-    //           roasted: itemOfIndex.roasted,
-    //           imagelink_square: itemOfIndex.imagelink_square,
-    //           special_ingredient: itemOfIndex.special_ingredient,
-    //           type: itemOfIndex.type,
-    //           price: price,
-    //         });
-    //       }}
-    //     />
-    //   </ScrollView> 
-    // </View>
 
   )
 }

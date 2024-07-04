@@ -33,7 +33,7 @@ const RenderDetails = ({foodItem, price, setPrice}: RenderDetailsProps) => {
                     style={{width:30, height:30}}
                 />
                 <Text style={{color:COLORS.darkGray2}}>
-                    {foodItem?.calories} calories
+                    {foodItem.calories} calories
                 </Text>
             </View>
 
@@ -45,7 +45,7 @@ const RenderDetails = ({foodItem, price, setPrice}: RenderDetailsProps) => {
         </View>
 
         {/* food image */}
-        <Image source={foodItem?.image} resizeMode='contain'
+        <Image source={foodItem.image} resizeMode='contain'
             style={{height:170, width:"100%"}}
         />
       </View>
@@ -54,7 +54,7 @@ const RenderDetails = ({foodItem, price, setPrice}: RenderDetailsProps) => {
       <View style={{marginTop: SIZES.padding}}>
         
         <Text style={{fontSize:25, fontWeight:"600"}}>
-            {foodItem?.name}
+            {foodItem.name}
         </Text>
         
         {/* Description */}
@@ -65,7 +65,7 @@ const RenderDetails = ({foodItem, price, setPrice}: RenderDetailsProps) => {
                 <Text style={{marginTop:SIZES.base, color: COLORS.darkBlue,
                     textAlign:"justify", fontSize:17}}
                 >
-                {foodItem?.description}
+                {foodItem.description}
                 </Text>
             </TouchableWithoutFeedback>
         ):(
@@ -76,7 +76,7 @@ const RenderDetails = ({foodItem, price, setPrice}: RenderDetailsProps) => {
                     textAlign:"justify", fontSize:17}}
                     numberOfLines={3}
                 >
-                {foodItem?.description}
+                {foodItem.description}
                 </Text>
             </TouchableWithoutFeedback>
         )}

@@ -9,15 +9,16 @@ import { RootStackParamList } from '../../type'
 import { StackNavigationProp } from '@react-navigation/stack';
 import { PriceItem } from '../../type'
 
-type MyCartScreenProp = StackNavigationProp<RootStackParamList, 'MyCart'>;
+type MyCartScreenProp = StackNavigationProp<RootStackParamList, 'CartTab'>;
 
 type RenderFooterProps = {
   footerItem: FoodItem
   price: PriceItem
   setPrice: (item)=> void
+  onPress:()=> void
 }
 
-const RenderFooter = ({footerItem, price}:RenderFooterProps) => {
+const RenderFooter = ({footerItem, price, onPress}:RenderFooterProps) => {
   const navigation = useNavigation<MyCartScreenProp>()
 
   return (
@@ -38,7 +39,7 @@ const RenderFooter = ({footerItem, price}:RenderFooterProps) => {
           paddingHorizontal: SIZES.radius, borderRadius:SIZES.radius,
         }}
         label='Add to Cart'
-        onPress={()=> navigation.push("MyCart")}
+        onPress={onPress}
       />
     </View>
   )

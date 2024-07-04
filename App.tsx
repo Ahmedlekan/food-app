@@ -10,11 +10,11 @@ import { createStackNavigator } from '@react-navigation/stack';
 import CustomDrawer from './src/navigation/CustomDrawer';
 import { Notification } from "./src/screens";
 import {OnBoarding, SignIn, SignUp, Otp, ForgotPassword, 
-  FoodDetails, MyCart, MyCard, AddCard, CheckOut, 
+  FoodDetails, CartTab, MyCard, AddCard, CheckOut, 
   Success, DeliveryStatus, Map} from "./src/screens/index"
 import { RootStackParamList } from "./src/type";
 
-const Stack = createStackNavigator<RootStackParamList>()
+const Stack = createStackNavigator()
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
 
@@ -35,7 +35,7 @@ useEffect(()=>{
         {/* <Stack.Screen name="ForgotPassword" component={ForgotPassword} /> */}
         {/* <Stack.Screen name="Otp" component={Otp} /> */}
         <Stack.Screen name="FoodDetails" component={FoodDetails}/>
-        <Stack.Screen name="MyCart" component={MyCart} />
+        <Stack.Screen name="CartTab" component={CartTab} />
         <Stack.Screen name="MyCard" component={MyCard} />
         <Stack.Screen name="AddCard" component={AddCard} />
         <Stack.Screen name="CheckOut" component={CheckOut} />

@@ -41,10 +41,6 @@ const bottom_tabs = [
         label: screens.home,
     },
     {
-        id: 1,
-        label: screens.search,
-    },
-    {
         id: 2,
         label: screens.cart,
     },

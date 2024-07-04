@@ -6,177 +6,265 @@ const myProfile = {
     address: "No. 88, Jln Padungan, Kuching"
 }
 
+const foodItems = [
+    {
+        id: 1,
+        name: "Hamburger",
+        description: "Chicken patty hamburger",
+        category: ['Fast Food'],
+        isFavourite: true,
+        image: require("../assets/dummyData/hamburger.png"),
+        prices: [
+            {size: 'S', price: '15.99', currency: '$'},
+            {size: 'M', price: '18.99', currency: '$'},
+            {size: 'L', price: '21.99', currency: '$'},
+        ],
+        average_rating: 4.6,
+        ratings_count: '6,879',
+    },
+    
+    {
+        id: 2,
+        name: "Cheese Burger",
+        description: "Chicken patty hamburger",
+        category: ['Fast Food'],
+        calories: 78,
+        isFavourite: true,
+        image: require("../assets/dummyData/hamburger.png"),
+        prices: [
+            {size: 'S', price: '14.99', currency: '$'},
+            {size: 'M', price: '17.99', currency: '$'},
+            {size: 'L', price: '19.99', currency: '$'},
+        ],
+        average_rating: 4.6,
+        ratings_count: '6,879',
+    },
+    {
+        id: 3,
+        name: "Hot Tacos",
+        description: "Mexican tortilla & tacos",
+        category: ['Fast Food'],
+        calories: 78,
+        isFavourite: false,
+        image: require("../assets/dummyData/hot_tacos.png"),
+        prices: [
+            {size: 'S', price: '13.99', currency: '$'},
+            {size: 'M', price: '15.99', currency: '$'},
+            {size: 'L', price: '18.99', currency: '$'},
+        ],
+        average_rating: 4.5,
+        ratings_count: '6,879',
+    },
+    {
+        id: 4,
+        name: "Wrap Sandwich",
+        description: "Grilled vegetables sandwich",
+        category: ['Fast Food'],
+        calories: 78,
+        isFavourite: true,
+        image: require("../assets/dummyData/wrap_sandwich.png"),
+        prices: [
+            {size: 'S', price: '10.99', currency: '$'},
+            {size: 'M', price: '14.99', currency: '$'},
+            {size: 'L', price: '19.99', currency: '$'},
+        ],
+        average_rating: 5,
+        ratings_count: '6,879',
+    },
+
+    {
+        id: 5,
+        name: "Chocolate Cake",
+        description: "Grilled vegetables sandwich",
+        category: ['Cake'],
+        calories: 78,
+        isFavourite: true,
+        image: require("../assets/dummyData/wrap_sandwich.png"),
+        prices: [
+            {size: 'S', price: '17.99', currency: '$'},
+            {size: 'M', price: '21.99', currency: '$'},
+            {size: 'L', price: '25.99', currency: '$'},
+        ],
+        average_rating: 5,
+        ratings_count: '6,879',
+    },
+    {
+        id: 6,
+        name: "Vanilla Cake",
+        description: "Grilled vegetables sandwich",
+        category: ['Cake'],
+        calories: 78,
+        isFavourite: true,
+        image: require("../assets/dummyData/wrap_sandwich.png"),
+        prices: [
+            {size: 'S', price: '18.99', currency: '$'},
+            {size: 'M', price: '20.99', currency: '$'},
+            {size: 'L', price: '24.99', currency: '$'},
+        ],
+        average_rating: 5,
+        ratings_count: '6,879',
+    },
+    {
+        id: 7,
+        name: "Coconut Cake",
+        description: "Grilled vegetables sandwich",
+        category: ['Cake'],
+        calories: 78,
+        isFavourite: true,
+        image: require("../assets/dummyData/wrap_sandwich.png"),
+        prices: [
+            {size: 'S', price: '20.99', currency: '$'},
+            {size: 'M', price: '25.99', currency: '$'},
+            {size: 'L', price: '30.99', currency: '$'},
+        ],
+        average_rating: 5,
+        ratings_count: '6,879',
+    },
+    
+    {
+        id: 8,
+        name: "Strawberry Cake",
+        description: "Grilled vegetables sandwich",
+        category: ['Cake'],
+        calories: 78,
+        isFavourite: true,
+        image: require("../assets/dummyData/wrap_sandwich.png"),
+        prices: [
+            {size: 'S', price: '19.99', currency: '$'},
+            {size: 'M', price: '23.99', currency: '$'},
+            {size: 'L', price: '28.99', currency: '$'},
+        ],
+        average_rating: 5,
+        ratings_count: '6,879',
+    },
+
+    {
+        id: 9,
+        name: "Spanish Rice",
+        description: "Grilled vegetables sandwich",
+        category: ["Rice Item"],
+        calories: 78,
+        isFavourite: true,
+        image: require("../assets/dummyData/wrap_sandwich.png"),
+        prices: [
+            {size: 'S', price: '16.99', currency: '$'},
+            {size: 'M', price: '19.99', currency: '$'},
+            {size: 'L', price: '23.99', currency: '$'},
+        ],
+        average_rating: 5,
+        ratings_count: '6,879',
+    },
+    {
+        id: 10,
+        name: "Fried Rice",
+        description: "Grilled vegetables sandwich",
+        category:  ["Rice Item"],
+        calories: 78,
+        isFavourite: true,
+        image: require("../assets/dummyData/wrap_sandwich.png"),
+        prices: [
+            {size: 'S', price: '16.99', currency: '$'},
+            {size: 'M', price: '19.99', currency: '$'},
+            {size: 'L', price: '23.99', currency: '$'},
+        ],
+        average_rating: 5,
+        ratings_count: '6,879',
+    },
+    {
+        id: 11,
+        name: "Mexican Rice",
+        description: "Grilled vegetables sandwich",
+        category:  ["Rice Item"],
+        calories: 78,
+        isFavourite: true,
+        image: require("../assets/dummyData/wrap_sandwich.png"),
+        prices: [
+            {size: 'S', price: '19.99', currency: '$'},
+            {size: 'M', price: '22.99', currency: '$'},
+            {size: 'L', price: '28.99', currency: '$'},
+        ],
+        average_rating: 5,
+        ratings_count: '6,879',
+    },
+
+    {
+        id: 12,
+        name: "Veg Biryani",
+        description: "Veg Biryani is a flavourful rice dish made with basmati rice, mixed vegetables, whole spices, freshly ginger, garlic, coriander and mint leaves. In this blog post I have shared vegetable biryani",
+        category:  ["Rice Item"],
+        isFavourite: true,
+        image: require("../assets/dummyData/veg_biryani.png"),
+        prices: [
+            {size: 'S', price: '17.99', currency: '$'},
+            {size: 'M', price: '19.99', currency: '$'},
+            {size: 'L', price: '24.99', currency: '$'},
+        ],
+        average_rating: 4.7,
+        ratings_count: '6,879',
+        
+    }
+] 
+
+
 const categories = [
     {
         id: 1,
         name: "Fast Food",
-        icon: icons.burger
+        icon: icons.burger,
+        foodList: foodItems.filter(item => item.category.includes("Fast Food")),
     },
+
+
     {
         id: 2,
-        name: "Fruit Item",
-        icon: icons.cherry
+        name: "Cake",
+        icon: icons.cherry,
+        foodList: foodItems.filter(item => item.category.includes("Cake")),
     },
+
+
     {
         id: 3,
         name: "Rice Item",
-        icon: icons.rice
+        icon: icons.rice,
+        foodList: foodItems.filter(item => item.category.includes("Rice Item")),
     }
 ]
-
-const hamburger = {
-    id: 1,
-    name: "Hamburger",
-    description: "Chicken patty hamburger",
-    categories: [1, 2],
-    price: 15.99,
-    calories: 78,
-    isFavourite: true,
-    imagelink_portrait: require('../assets/dummyData/hamburger.png'),
-    image: require("../assets/dummyData/hamburger.png"),
-    prices: [
-        {size: 'S', price: '15.99', currency: '$'},
-        {size: 'M', price: '18.99', currency: '$'},
-        {size: 'L', price: '21.99', currency: '$'},
-    ],
-    average_rating: 4.6,
-    ratings_count: '6,879',
-}
-
-const hotTacos = {
-    id: 2,
-    name: "Hot Tacos",
-    description: "Mexican tortilla & tacos",
-    categories: [1, 3],
-    calories: 78,
-    isFavourite: false,
-    image: require("../assets/dummyData/hot_tacos.png"),
-    imagelink_portrait: require('../assets/dummyData/hot_tacos.png'),
-    prices: [
-        {size: 'S', price: '13.99', currency: '$'},
-        {size: 'M', price: '15.99', currency: '$'},
-        {size: 'L', price: '18.99', currency: '$'},
-    ],
-    average_rating: 4.5,
-    ratings_count: '6,879',
-}
-
-const vegBiryani = {
-    id: 3,
-    name: "Veg Biryani",
-    description: "Veg Biryani is a flavourful rice dish made with basmati rice, mixed vegetables, whole spices, freshly ginger, garlic, coriander and mint leaves. In this blog post I have shared vegetable biryani",
-    categories: [1, 2, 3],
-    calories: 78,
-    isFavourite: true,
-    image: require("../assets/dummyData/veg_biryani.png"),
-    imagelink_portrait: require('../assets/dummyData/veg_biryani.png'),
-    prices: [
-        {size: 'S', price: '17.99', currency: '$'},
-        {size: 'M', price: '19.99', currency: '$'},
-        {size: 'L', price: '24.99', currency: '$'},
-    ],
-    average_rating: 4.7,
-    ratings_count: '6,879',
-    
-}
-
-const wrapSandwich = {
-    id: 4,
-    name: "Wrap Sandwich",
-    description: "Grilled vegetables sandwich",
-    categories: [1, 2],
-    calories: 78,
-    isFavourite: true,
-    image: require("../assets/dummyData/wrap_sandwich.png"),
-    imagelink_portrait: require('../assets/dummyData/wrap_sandwich.png'),
-    prices: [
-        {size: 'S', price: '10.99', currency: '$'},
-        {size: 'M', price: '14.99', currency: '$'},
-        {size: 'L', price: '19.99', currency: '$'},
-    ],
-    average_rating: 5,
-    ratings_count: '6,879',
-}
 
 const menu = [
     {
         id: 1,
         name: "Featured",
-        list: [
-            hamburger, hotTacos, vegBiryani,
-        ]
+        list: foodItems.filter(item => [1, 3, 7, 8, 9, 11,].includes(item.id)),
     },
     {
         id: 2,
         name: "Nearby you",
-        list: [
-            hamburger, vegBiryani, wrapSandwich,
-        ]
+        list: foodItems.filter(item => [2, 4, 5, 7, 9, 12].includes(item.id)),
     },
     {
         id: 3,
         name: "Popular",
-        list: [
-            wrapSandwich, hotTacos, hamburger,
-        ]
+        list: foodItems.filter(item => [1, 3, 7, 5, 9, 11].includes(item.id)),
     },
     {
         id: 4,
         name: "Newest",
-        list: [
-            hamburger, hotTacos, vegBiryani,
-        ]
+        list: foodItems.filter(item => [2, 4, 6, 7, 8, 10,].includes(item.id)),
     },
     {
         id: 5,
         name: "Trending",
-        list: [
-            hamburger, vegBiryani, wrapSandwich,
-        ]
+        list: foodItems.filter(item => [1, 3, 5, 8, 9, 11,].includes(item.id)),
     },
     {
         id: 6,
         name: "Recommended",
-        list: [
-            hamburger, hotTacos, wrapSandwich,
-        ]
+        list: foodItems.filter(item => [2, 4, 6, 7, 9, 12].includes(item.id)),
     },
 
 ]
 
-const sizes = [
-    {
-        id: 1,
-        label: '12"'
-    },
-    {
-        id: 2,
-        label: '14"'
-    },
-    {
-        id: 3,
-        label: '16"'
-    },
-    {
-        id: 4,
-        label: '18"'
-    }
-]
-
-const myCart = [
-    {
-        ...hamburger,
-        qty: 1
-    },
-    {
-        ...hotTacos,
-        qty: 1
-    },
-    {
-        ...vegBiryani,
-        qty: 1
-    }
-]
 
 const myCards = [
     {
@@ -255,9 +343,6 @@ export default {
     fromLocs,
     categories,
     menu,
-    vegBiryani,
-    sizes,
-    myCart,
     myCards,
     allCards
 }

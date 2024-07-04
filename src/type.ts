@@ -1,7 +1,9 @@
+import {ImageProps} from 'react-native';
+
 export type RootStackParamList = {
     Home: undefined;
     FoodDetails: { item: FoodItem };
-    MyCart:undefined
+    CartTab:undefined
     MyCard:undefined
     AddCard:undefined
     CheckOut:undefined
@@ -11,9 +13,10 @@ export type RootStackParamList = {
   };
  
   export type PriceItem = {
-    size: 'S' | 'M' | 'L';
+    size: string
     price: string;
     currency: string;
+    
 };
 
   // Define your FoodItem type
@@ -21,13 +24,24 @@ export type RootStackParamList = {
     id: string;
     name: string;
     description: string;
-    categories: number[]
     isFavourite:boolean
     calories: number;
-    imagelink_portrait: any;
-    image: any;
+    category: string,
+    image: ImageProps;
     prices: PriceItem[];
     average_rating: number;
     ratings_count: string;
   };
 
+export interface FoodList {
+    id: number;
+    name: string;
+    list: FoodItem[];
+}
+
+export interface Category {
+  id: number;
+  name: string;
+  icon: any;
+  foodList:FoodItem[]
+}

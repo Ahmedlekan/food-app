@@ -1,14 +1,19 @@
 import { StyleSheet, Text, View , TouchableOpacity, Image} from 'react-native'
 import React from 'react'
 import { COLORS, icons, SIZES } from '../constants'
+import { truncateText } from '../utils/Utils'
+import { PriceItem } from '../type'
+import { FoodItem } from '../type'
 
 type VerticalFoodCardProps = {
     containerStyle:any
-    item:any
+    item: any
     onPress: ()=> void
+    price: PriceItem
 }
 
-const VerticalFoodCard = ({containerStyle, item, onPress}: VerticalFoodCardProps) => {
+const VerticalFoodCard = ({containerStyle, item, price, onPress}: VerticalFoodCardProps) => {
+    const shortenedDescription = truncateText(item.description, 20);
   return (
     <TouchableOpacity onPress={onPress}
         style={{width:200, padding:SIZES.radius, alignItems:'center', 
@@ -25,13 +30,13 @@ const VerticalFoodCard = ({containerStyle, item, onPress}: VerticalFoodCardProps
         </View>
 
        <View style={styles.imageStyleContainer}>
-       <Image source={item.image} style={{width:"100%", height:"100%"}} />
+        <Image source={item.image} style={{width:"100%", height:"100%"}} />
        </View>
 
         <View style={{alignItems:"center", marginTop:-20}}>
             <Text style={{fontSize:17, fontWeight:'500'}}>{item.name}</Text>
-            <Text style={{color: COLORS.darkGray}}>{item.description}</Text>
-            <Text style={{marginTop:SIZES.base, fontWeight:'700', fontSize:20}}>{item.price}</Text>
+            <Text style={{color: COLORS.darkGray}}>{shortenedDescription}</Text>
+            <Text style={{marginTop:SIZES.base, fontWeight:'700', fontSize:20}}>{price.price}</Text>
         </View>
 
     </TouchableOpacity>
